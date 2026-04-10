@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #f7f7f2;
+  --color-ink: #0f172a;
+  --color-sky: #0ea5e9;
+  --color-orange: #f97316;
+  --font-heading: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Segoe UI Variable Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 24rem),
+    linear-gradient(180deg, #fafaf7 0%, #f7f7f2 100%);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.hero-glow {
+  background:
+    radial-gradient(circle, rgba(14, 165, 233, 0.26) 0%, rgba(56, 189, 248, 0.12) 32%, transparent 68%),
+    radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.18), transparent 45%);
+}
+
+.float-card {
+  animation: floatCard 7s ease-in-out infinite;
+}
+
+.button-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-125%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transition: transform 0.8s ease;
+}
+
+.button-shine:hover::after {
+  transform: translateX(125%) skewX(-18deg);
+}
+
+.stagger-rise {
+  opacity: 0;
+  animation: riseUp 0.8s ease forwards;
+}
+
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes riseUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .float-card,
+  .stagger-rise,
+  .button-shine::after {
+    animation: none;
+    transition: none;
+  }
+
+  .brands-track {
+    animation: none !important;
+  }
+}
+
+/* ── Brands marquee ── */
+.brands-track {
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+
+.brands-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Modal & dropdown animations ── */
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
